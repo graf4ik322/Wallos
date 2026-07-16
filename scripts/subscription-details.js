@@ -232,6 +232,57 @@ function closeSubscriptionDetails() {
   document.body.classList.remove('details-open');
 }
 
+function setupMarkAsPaidButton(subscriptionId, subscription) {
+  const payContainer = document.getElementById('details-pay-button-container');
+  const payButton = document.getElementById('details-pay-button');
+  
+  if (!payContainer || !payButton) return;
+  
+  const today = new Date();
+  const nextPay = new Date(subscription.next_payment + 'T00:00:00');
+  const daysUntil = Math.ceil((nextPay - today) / 86400000);
+  const notifyDays = subscription.notify_days_before >= 0 ? subscription.notify_days_before : 3;
+  
+  if (daysUntil <= notifyDays && !subscription.inactive) {
+    payContainer.style.display = 'block';
+    
+    payButton.onclick = function() {
+      payButton.disabled = true;
+      payButton.textContent = '⏳ ...';
+      
+      fetch('endpoints/subscription/markpaid.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-Token': window.csrfToken,
+        },
+        body: JSON.stringify({ id: subscriptionId }),
+      })
+        .then(function(response) { return response.json(); })
+        .then(function(data) {
+          if (data.success) {
+            payButton.textContent = '✅ ' + strings.payment_marked;
+            setTimeout(function() {
+              payContainer.style.display = 'none';
+              closeSubscriptionDetails();
+              location.reload();
+            }, 1500);
+          } else {
+            payButton.textContent = '❌ ' + (data.message || 'Error');
+            payButton.disabled = false;
+            setTimeout(function() {
+              payButton.textContent = '✅ ' + strings.mark_as_paid;
+            }, 2000);
+          }
+        })
+        .catch(function() {
+          payButton.textContent = '❌ Error';
+          payButton.disabled = false;
+        });
+    };
+  }
+}
+
 document.addEventListener('DOMContentLoaded', function () {
   const detailsModal = document.querySelector('#subscription-details');
   if (!detailsModal) {
