@@ -1,9 +1,10 @@
 <?php
+ob_start();
 require_once '../../includes/connect_endpoint.php';
+ob_end_clean();
 
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-    http_response_code(401);
-    echo json_encode(["success" => false, "message" => "Unauthorized"]);
+    echo json_encode(["success" => false, "message" => "Session expired"]);
     exit;
 }
 
@@ -11,8 +12,7 @@ $postData = file_get_contents("php://input");
 $data = json_decode($postData, true);
 
 if (!isset($data["id"]) || $data["id"] == "") {
-    $response = ["success" => false, "message" => translate('fill_mandatory_fields', $i18n)];
-    echo json_encode($response);
+    echo json_encode(["success" => false, "message" => "Missing subscription ID"]);
     exit;
 }
 
@@ -26,8 +26,7 @@ $result = $stmt->execute();
 $subscription = $result->fetchArray(SQLITE3_ASSOC);
 
 if (!$subscription) {
-    $response = ["success" => false, "message" => translate('subscription_not_found', $i18n)];
-    echo json_encode($response);
+    echo json_encode(["success" => false, "message" => "Subscription not found"]);
     exit;
 }
 
@@ -48,20 +47,16 @@ elseif ($cycleName == 'Weekly') { $intervalSpec .= "{$frequency}W"; }
 elseif ($cycleName == 'Monthly') { $intervalSpec .= "{$frequency}M"; }
 elseif ($cycleName == 'Yearly') { $intervalSpec .= "{$frequency}Y"; }
 else {
-    $response = ["success" => false, "message" => translate('invalid_cycle', $i18n)];
-    echo json_encode($response);
+    echo json_encode(["success" => false, "message" => "Invalid cycle"]);
     exit;
 }
 
 $interval = new DateInterval($intervalSpec);
 
-// Check if subscription has shift_from_today_on_pay enabled
-// If yes, start counting from today instead of scheduled date
 if (isset($subscription['shift_from_today_on_pay']) && $subscription['shift_from_today_on_pay'] == 1) {
     $nextPaymentDate = new DateTime();
 }
 
-// Add exactly one billing cycle
 $nextPaymentDate->add($interval);
 $newDate = $nextPaymentDate->format('Y-m-d');
 
@@ -72,13 +67,7 @@ $stmt->bindValue(':id', $subscriptionId, SQLITE3_INTEGER);
 $stmt->bindValue(':userId', $userId, SQLITE3_INTEGER);
 
 if ($stmt->execute()) {
-    $response = [
-        "success" => true,
-        "message" => translate('payment_marked', $i18n),
-        "next_payment" => $newDate
-    ];
+    echo json_encode(["success" => true, "next_payment" => $newDate]);
 } else {
-    $response = ["success" => false, "message" => translate('error_updating_subscription', $i18n)];
+    echo json_encode(["success" => false, "message" => "Update failed"]);
 }
-
-echo json_encode($response);
