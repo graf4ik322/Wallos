@@ -229,6 +229,7 @@ $frequency = $_POST["frequency"];
 $cycle = $_POST["cycle"];
 $nextPayment = $_POST["next_payment"];
 $autoRenew = isset($_POST['auto_renew']) ? true : false;
+$shiftFromTodayOnPay = isset($_POST['shift_from_today_on_pay']) ? 1 : 0;
 $startDate = $_POST["start_date"];
 $paymentMethodId = $_POST["payment_method_id"];
 $payerUserId = $_POST["payer_user_id"];
@@ -313,12 +314,12 @@ if (!$isEdit) {
                         name, logo, price, currency_id, next_payment, cycle, frequency, notes,
                         payment_method_id, payer_user_id, category_id, notify, inactive, url,
                         notify_days_before, user_id, cancellation_date, replacement_subscription_id,
-                        auto_renew, start_date, logo_text_color, logo_variant
+                        auto_renew, shift_from_today_on_pay, start_date, logo_text_color, logo_variant
                     ) VALUES (
                         :name, :logo, :price, :currencyId, :nextPayment, :cycle, :frequency, :notes,
                         :paymentMethodId, :payerUserId, :categoryId, :notify, :inactive, :url,
                         :notifyDaysBefore, :userId, :cancellationDate, :replacement_subscription_id,
-                        :autoRenew, :startDate, :logoTextColor, :logoVariant
+                        :autoRenew, :shiftFromTodayOnPay, :startDate, :logoTextColor, :logoVariant
                     )";
 } else {
     $id = $_POST['id'];

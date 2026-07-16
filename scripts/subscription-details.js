@@ -243,9 +243,11 @@ function setupMarkAsPaidButton(subscriptionId, subscription) {
   var today = new Date();
   var due = new Date(subscription.next_payment + 'T00:00:00');
   var daysLeft = Math.ceil((due - today) / 86400000);
-  var trigger = subscription.notify_days_before >= 0 ? subscription.notify_days_before : 3;
+  // notify_days_before: -1 = use default from global settings, null = same
+  var trigger = Number(subscription.notify_days_before);
+  if (isNaN(trigger) || trigger < 0) trigger = 5; // default 5 days
   
-  if (daysLeft <= trigger && !subscription.inactive) {
+  if (!isNaN(daysLeft) && daysLeft <= trigger && daysLeft >= 0 && !subscription.inactive) {
     c.style.display = 'block';
     
     b.onclick = function() {
