@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.3.0](https://github.com/graf4ik322/Wallos/compare/v5.2.0...v5.3.0) (2026-07-16)
+
+
+### Features
+
+* repeat notifications toggle + customizable Telegram template ([650dc0e](https://github.com/graf4ik322/Wallos/commit/650dc0e40120452081d7301444fd7415674ac92c))
+
 ## [5.2.0](https://github.com/ellite/Wallos/compare/v5.1.1...v5.2.0) (2026-07-14)
 
 
