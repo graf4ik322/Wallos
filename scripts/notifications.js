@@ -183,11 +183,13 @@ function testNotificationsTelegramButton() {
     const enabled = document.getElementById("telegramenabled").checked ? 1 : 0;
     const bottoken = document.getElementById("telegrambottoken").value;
     const chatid = document.getElementById("telegramchatid").value;
+    const message_template = document.getElementById("telegrammessagetemplate").value;
   
     const data = {
       enabled: enabled,
       bottoken: bottoken,
-      chatid: chatid
+      chatid: chatid,
+      message_template: message_template
     };
 
     makeFetchCall('endpoints/notifications/testtelegramnotifications.php', data, button);
