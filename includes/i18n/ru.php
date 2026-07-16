@@ -482,6 +482,9 @@ $i18n = [
     "telegram_template_placeholders_info" => "Плейсхолдеры: {name} - название, {price} - цена, {next_payment} - дата, {days_left} - дней до, {url} - сайт, {category} - категория, {notes} - заметки. Поддерживается HTML: <b>жирный</b>",
     "mark_as_paid" => "Отметить оплаченным",
     "payment_marked" => "Платёж отмечен!",
+    "pay_date_behavior" => "Поведение даты оплаты",
+    "shift_from_today" => "Отсчёт от сегодня",
+    "shift_from_today_info" => "При отметке оплаты новая дата платежа будет рассчитываться от сегодняшнего дня, а не от запланированной даты.",
 ];
 
 

@@ -327,7 +327,7 @@ if (!$isEdit) {
                         price = :price, 
                         currency_id = :currencyId,
                         next_payment = :nextPayment, 
-                        auto_renew = :autoRenew,
+                        auto_renew = :autoRenew, shift_from_today_on_pay = :shiftFromTodayOnPay,
                         start_date = :startDate,
                         cycle = :cycle, 
                         frequency = :frequency, 

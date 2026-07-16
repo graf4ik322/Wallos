@@ -48,8 +48,15 @@ else {
     exit;
 }
 
-// Add exactly one billing cycle from the scheduled payment date
 $interval = new DateInterval($intervalSpec);
+
+// Check if subscription has shift_from_today_on_pay enabled
+// If yes, start counting from today instead of scheduled date
+if (isset($subscription['shift_from_today_on_pay']) && $subscription['shift_from_today_on_pay'] == 1) {
+    $nextPaymentDate = new DateTime();
+}
+
+// Add exactly one billing cycle
 $nextPaymentDate->add($interval);
 $newDate = $nextPaymentDate->format('Y-m-d');
 

@@ -29,6 +29,10 @@ function resetForm() {
   submitButton.disabled = false;
   const autoRenew = document.querySelector("#auto_renew");
   autoRenew.checked = true;
+  const shiftFromToday = document.querySelector("#shift_from_today_on_pay");
+  if (shiftFromToday) {
+    shiftFromToday.checked = subscription.shift_from_today_on_pay == 1;
+  }
   const startDate = document.querySelector("#start_date");
   startDate.value = new Date().toISOString().split('T')[0];
   const notifyDaysBefore = document.querySelector("#notify_days_before");

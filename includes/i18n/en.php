@@ -482,6 +482,9 @@ $i18n = [
     "telegram_template_placeholders_info" => "Placeholders: {name} - name, {price} - price, {next_payment} - date, {days_left} - days until, {url} - website, {category} - category, {notes} - notes. Supports HTML: <b>bold</b>",
     "mark_as_paid" => "Mark as Paid",
     "payment_marked" => "Payment recorded!",
+    "pay_date_behavior" => "Pay date behavior",
+    "shift_from_today" => "Shift from today",
+    "shift_from_today_info" => "When marking as paid, the next payment date will be calculated from today instead of from the original scheduled date.",
 ];
 
 

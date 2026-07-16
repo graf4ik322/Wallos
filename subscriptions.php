@@ -392,6 +392,14 @@ $subscriptionsView = (isset($_COOKIE['subscriptionsView']) && $_COOKIE['subscrip
             <label for="auto_renew"><?= translate('automatically_renews', $i18n) ?></label>
           </div>
         </div>
+        <div class="split33" id="shift-pay-group">
+          <label><?= translate('pay_date_behavior', $i18n) ?></label>
+          <div class="inline height50">
+            <input type="checkbox" id="shift_from_today_on_pay" name="shift_from_today_on_pay">
+            <label for="shift_from_today_on_pay"><?= translate('shift_from_today', $i18n) ?></label>
+            <i class="fa-solid fa-circle-info" title="<?= translate('shift_from_today_info', $i18n) ?>"></i>
+          </div>
+        </div>
       </div>
     </div>
 

@@ -21,6 +21,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
             $subscriptionData['price'] = $row['price'];
             $subscriptionData['currency_id'] = $row['currency_id'];
             $subscriptionData['auto_renew'] = $row['auto_renew'];
+            $subscriptionData['shift_from_today_on_pay'] = $row['shift_from_today_on_pay'] ?? 0;
             $subscriptionData['start_date'] = $row['start_date'];
             $subscriptionData['next_payment'] = $row['next_payment'];
             $subscriptionData['frequency'] = $row['frequency'];
