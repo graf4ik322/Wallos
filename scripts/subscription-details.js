@@ -256,7 +256,6 @@ function setupMarkAsPaidButton(subscriptionId, subscription) {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'X-CSRF-Token': window.csrfToken || '',
         },
         body: JSON.stringify({ id: subscriptionId }),
       })

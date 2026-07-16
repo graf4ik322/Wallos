@@ -1,6 +1,11 @@
 <?php
 require_once '../../includes/connect_endpoint.php';
-require_once '../../includes/validate_endpoint.php';
+
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+    http_response_code(401);
+    echo json_encode(["success" => false, "message" => "Unauthorized"]);
+    exit;
+}
 
 $postData = file_get_contents("php://input");
 $data = json_decode($postData, true);
