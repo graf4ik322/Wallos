@@ -2145,11 +2145,6 @@ button.dark-theme-button i {
   position: fixed;
   bottom: 25px;
   right: 30px;
-}
-
-.toast#errorToast {
-  bottom: 95px;
-}
   border-radius: 12px;
   border: 1px solid var(--box-border-color);
   background-color: var(--box-background-color);
@@ -2160,6 +2155,10 @@ button.dark-theme-button i {
   transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.35);
   box-sizing: border-box;
   z-index: 5;
+}
+
+.toast#errorToast {
+  bottom: 95px;
 }
 
 @media (max-width: 768px) {
