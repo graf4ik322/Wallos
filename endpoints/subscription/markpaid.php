@@ -13,7 +13,6 @@ if (!isset($data["id"]) || $data["id"] == "") {
 
 $subscriptionId = intval($data["id"]);
 
-// Get the subscription
 $query = "SELECT * FROM subscriptions WHERE id = :id AND user_id = :userId";
 $stmt = $db->prepare($query);
 $stmt->bindValue(':id', $subscriptionId, SQLITE3_INTEGER);
@@ -27,7 +26,6 @@ if (!$subscription) {
     exit;
 }
 
-// Get cycles
 $cycles = [];
 $query = "SELECT * FROM cycles";
 $result = $db->query($query);
@@ -35,28 +33,24 @@ while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
     $cycles[$row['id']] = $row;
 }
 
-$currentDate = new DateTime();
 $nextPaymentDate = new DateTime($subscription['next_payment']);
 $frequency = $subscription['frequency'];
-$cycle = $cycles[$subscription['cycle']]['name'];
+$cycleName = $cycles[$subscription['cycle']]['name'];
 
-// Calculate next payment
 $intervalSpec = "P";
-if ($cycle == 'Daily') { $intervalSpec .= "{$frequency}D"; }
-elseif ($cycle == 'Weekly') { $intervalSpec .= "{$frequency}W"; }
-elseif ($cycle == 'Monthly') { $intervalSpec .= "{$frequency}M"; }
-elseif ($cycle == 'Yearly') { $intervalSpec .= "{$frequency}Y"; }
+if ($cycleName == 'Daily') { $intervalSpec .= "{$frequency}D"; }
+elseif ($cycleName == 'Weekly') { $intervalSpec .= "{$frequency}W"; }
+elseif ($cycleName == 'Monthly') { $intervalSpec .= "{$frequency}M"; }
+elseif ($cycleName == 'Yearly') { $intervalSpec .= "{$frequency}Y"; }
 else {
     $response = ["success" => false, "message" => translate('invalid_cycle', $i18n)];
     echo json_encode($response);
     exit;
 }
 
+// Add exactly one billing cycle from the scheduled payment date
 $interval = new DateInterval($intervalSpec);
-while ($nextPaymentDate <= $currentDate) {
-    $nextPaymentDate->add($interval);
-}
-
+$nextPaymentDate->add($interval);
 $newDate = $nextPaymentDate->format('Y-m-d');
 
 $updateQuery = "UPDATE subscriptions SET next_payment = :nextPayment WHERE id = :id AND user_id = :userId";
