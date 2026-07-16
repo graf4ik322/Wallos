@@ -478,6 +478,7 @@ $i18n = [
     "monthly_requests_used" => "Porabljene zahteve API ta mesec",
     "mark_as_paid" => "Mark as Paid",
     "payment_marked" => "Payment recorded!",
+    "shift_from_today_short" => "Enabled",
 ];
 
 

@@ -478,6 +478,7 @@ $i18n = [
     "monthly_requests_used" => "이번 달 사용한 API 요청 수",
     "mark_as_paid" => "Mark as Paid",
     "payment_marked" => "Payment recorded!",
+    "shift_from_today_short" => "Enabled",
 ];
 
 
