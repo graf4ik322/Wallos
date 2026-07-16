@@ -81,9 +81,9 @@ require_once __DIR__ . '/getdbkeys.php';
     <span id="details-notes"></span>
   </div>
   <div class="details-pay-button-container" id="details-pay-button-container" style="display:none;padding:12px 24px 24px">
-    <button type="button" class="button" id="details-pay-button" style="width:100%;background-color:#28a745;color:#fff;border:none;border-radius:25px;padding:16px 0;font-size:16px;font-weight:500;letter-spacing:0.015em;cursor:pointer;transition:background-color 0.2s ease,transform 0.12s ease,box-shadow 0.2s ease;box-shadow:0 1px 3px rgba(0,0,0,0.15)" 
-      onmouseover="this.style.backgroundColor='#1e7e34';this.style.boxShadow='0 2px 8px rgba(0,0,0,0.2)'" onmouseout="this.style.backgroundColor='#28a745';this.style.boxShadow='0 1px 3px rgba(0,0,0,0.15)'" onmousedown="this.style.transform='scale(0.97)'" onmouseup="this.style.transform='scale(1)'">
-      <?= translate('mark_as_paid', $i18n) ?>
+    <button type="button" class="button" id="details-pay-button" style="width:100%;background-color:#22c55e;color:#fff;border:none;border-radius:8px;padding:12px 0;font-size:15px;font-weight:500;cursor:pointer;transition:background-color 0.15s ease,transform 0.1s ease,box-shadow 0.15s ease;box-shadow:0 1px 2px rgba(0,0,0,0.1);display:flex;align-items:center;justify-content:center;gap:8px" 
+      onmouseover="this.style.backgroundColor='#16a34a';this.style.boxShadow='0 2px 6px rgba(0,0,0,0.15)'" onmouseout="this.style.backgroundColor='#22c55e';this.style.boxShadow='0 1px 2px rgba(0,0,0,0.1)'" onmousedown="this.style.transform='scale(0.98)'" onmouseup="this.style.transform='scale(1)'">
+      <span id="pay-button-text"><?= translate('mark_as_paid', $i18n) ?></span>
     </button>
   </div>
 </section>
