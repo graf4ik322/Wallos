@@ -251,11 +251,9 @@ function setupMarkAsPaidButton(subscriptionId, subscription) {
     payButton.onclick = function() {
       // Prevent double clicks
       payButton.disabled = true;
-      payButton.textContent = strings.payment_marked;
-      payContainer.style.display = 'none';
-      closeSubscriptionDetails();
+      payButton.textContent = strings.mark_as_paid;
+      payButton.style.opacity = '0.6';
       
-      // Fire and forget - the backend processes it
       fetch('endpoints/subscription/markpaid.php', {
         method: 'POST',
         headers: {
@@ -263,12 +261,31 @@ function setupMarkAsPaidButton(subscriptionId, subscription) {
         },
         body: JSON.stringify({ id: subscriptionId }),
       })
-        .then(function(response) { return response.text(); })
-        .then(function(text) {
-          location.reload();
+        .then(function(response) { return response.json(); })
+        .then(function(data) {
+          if (data.success) {
+            payContainer.style.display = 'none';
+            closeSubscriptionDetails();
+            if (typeof showSuccessMessage === 'function') {
+              showSuccessMessage(strings.payment_marked);
+            }
+            setTimeout(function() { location.reload(); }, 1200);
+          } else {
+            payButton.disabled = false;
+            payButton.style.opacity = '1';
+            payButton.textContent = strings.mark_as_paid;
+            if (typeof showErrorMessage === 'function') {
+              showErrorMessage(data.message || 'Error');
+            }
+          }
         })
         .catch(function() {
-          location.reload();
+          payButton.disabled = false;
+          payButton.style.opacity = '1';
+          payButton.textContent = strings.mark_as_paid;
+          if (typeof showErrorMessage === 'function') {
+            showErrorMessage('Connection error');
+          }
         });
     };
   }
