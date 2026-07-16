@@ -361,6 +361,7 @@ $stmt->bindParam(':price', $price, SQLITE3_FLOAT);
 $stmt->bindParam(':currencyId', $currencyId, SQLITE3_INTEGER);
 $stmt->bindParam(':nextPayment', $nextPayment, SQLITE3_TEXT);
 $stmt->bindParam(':autoRenew', $autoRenew, SQLITE3_INTEGER);
+$stmt->bindParam(':shiftFromTodayOnPay', $shiftFromTodayOnPay, SQLITE3_INTEGER);
 $stmt->bindParam(':startDate', $startDate, SQLITE3_TEXT);
 $stmt->bindParam(':cycle', $cycle, SQLITE3_INTEGER);
 $stmt->bindParam(':frequency', $frequency, SQLITE3_INTEGER);
