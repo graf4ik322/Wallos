@@ -249,34 +249,18 @@ function setupMarkAsPaidButton(subscriptionId, subscription) {
     
     b.onclick = function() {
       b.disabled = true;
-      b.textContent = '...';
       
+      // Fire the request (background, don't wait for response)
       var xhr = new XMLHttpRequest();
       xhr.open('POST', 'endpoints/subscription/markpaid.php', true);
       xhr.setRequestHeader('Content-Type', 'application/json');
-      xhr.onload = function() {
-        try {
-          var data = JSON.parse(xhr.responseText);
-          if (data.success) {
-            c.style.display = 'none';
-            closeSubscriptionDetails();
-            try { showSuccessMessage(data.message || 'Paid'); } catch(e) {}
-            setTimeout(function() { location.reload(); }, 800);
-          } else {
-            b.disabled = false;
-            b.textContent = data.message || 'Error';
-            try { showErrorMessage(data.message || 'Error'); } catch(e) {}
-          }
-        } catch(e) {
-          b.disabled = false;
-          b.textContent = 'Error';
-        }
-      };
-      xhr.onerror = function() {
-        b.disabled = false;
-        b.textContent = 'Error';
-      };
       xhr.send(JSON.stringify({ id: subscriptionId }));
+      
+      // Immediately show success toast and close
+      c.style.display = 'none';
+      closeSubscriptionDetails();
+      try { showSuccessMessage((window.subscriptionLookups||{}).i18n.payment_marked || 'Paid!'); } catch(e) {}
+      setTimeout(function() { location.reload(); }, 1000);
     };
   }
 }

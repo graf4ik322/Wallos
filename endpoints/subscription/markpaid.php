@@ -1,5 +1,4 @@
 <?php
-ob_clean();
 require_once '../../includes/connect_endpoint.php';
 
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
