@@ -615,6 +615,15 @@ $userData['currency_symbol'] = $currencies[$main_currency]['symbol'];
                             placeholder="<?= translate('telegram_chat_id', $i18n) ?>"
                             value="<?= htmlspecialchars($notificationsTelegram['chat_id']) ?>" />
                     </div>
+                    <div class="form-group-inline">
+                        <label class="capitalize">Шаблон сообщения</label>
+                        <i class="fa-solid fa-circle-info" style="margin-left:6px;cursor:help" title="Плейсхолдеры: {name} - название, {price} - цена, {next_payment} - дата, {days_left} - дней до, {url} - сайт, {category} - категория, {notes} - заметки. Поддерживается HTML: &lt;b&gt;жирный&lt;/b&gt;"></i>
+                    </div>
+                    <div class="form-group-inline">
+                        <textarea name="telegrammessagetemplate" id="telegrammessagetemplate" rows="6" style="width:100%;font-family:monospace;font-size:13px"
+                            placeholder="🚨 {name}&#10;💵 {price}&#10;📅 {next_payment}&#10;🔥 {days_left}"
+                        ><?= htmlspecialchars(\$notificationsTelegram['message_template'] ?? '') ?></textarea>
+                    </div>
                     <div class="buttons">
                         <input type="button" class="secondary-button thin mobile-grow"
                             value="<?= translate('test', $i18n) ?>" id="testNotificationsTelegram"
