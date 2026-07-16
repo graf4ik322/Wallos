@@ -235,6 +235,7 @@ function closeSubscriptionDetails() {
 }
 
 function setupMarkAsPaidButton(subscriptionId, subscription) {
+  var oldNextPay = subscription.next_payment;
   var c = document.getElementById('details-pay-button-container');
   var b = document.getElementById('details-pay-button');
   if (!c || !b) return;
@@ -249,18 +250,42 @@ function setupMarkAsPaidButton(subscriptionId, subscription) {
     
     b.onclick = function() {
       b.disabled = true;
+      b.style.opacity = '0.5';
       
-      // Fire the request (background, don't wait for response)
       var xhr = new XMLHttpRequest();
       xhr.open('POST', 'endpoints/subscription/markpaid.php', true);
       xhr.setRequestHeader('Content-Type', 'application/json');
-      xhr.send(JSON.stringify({ id: subscriptionId }));
       
-      // Immediately show success toast and close
-      c.style.display = 'none';
-      closeSubscriptionDetails();
-      try { showSuccessMessage((window.subscriptionLookups||{}).i18n.payment_marked || 'Paid!'); } catch(e) {}
-      setTimeout(function() { location.reload(); }, 1000);
+      xhr.onload = function() {
+        try {
+          var data = JSON.parse(xhr.responseText);
+          if (data.success && data.next_payment !== oldNextPay) {
+            // Paid successfully
+            c.style.display = 'none';
+            closeSubscriptionDetails();
+            try { showSuccessMessage((window.subscriptionLookups||{}).i18n.payment_marked || 'Paid!'); } catch(e) {}
+            setTimeout(function() { location.reload(); }, 1000);
+          } else {
+            // Error from server
+            b.disabled = false;
+            b.style.opacity = '1';
+            try { showErrorMessage(data.message || 'Error'); } catch(e) {}
+          }
+        } catch(e) {
+          // Invalid response - retry
+          b.disabled = false;
+          b.style.opacity = '1';
+          try { showErrorMessage('Connection error'); } catch(e) {}
+        }
+      };
+      
+      xhr.onerror = function() {
+        b.disabled = false;
+        b.style.opacity = '1';
+        try { showErrorMessage('Network error'); } catch(e) {}
+      };
+      
+      xhr.send(JSON.stringify({ id: subscriptionId }));
     };
   }
 }
