@@ -130,6 +130,10 @@ $userData['currency_symbol'] = $currencies[$main_currency]['symbol'];
         $notifications['days'] = 1;
     }
 
+    if (!isset($notifications['repeat_until_paid'])) {
+        $notifications['repeat_until_paid'] = 0;
+    }
+
     // Email notifications
     $sql = "SELECT * FROM email_notifications WHERE user_id = :userId LIMIT 1";
     $stmt = $db->prepare($sql);
@@ -213,6 +217,7 @@ $userData['currency_symbol'] = $currencies[$main_currency]['symbol'];
         $notificationsTelegram['enabled'] = $row['enabled'];
         $notificationsTelegram['bot_token'] = $row['bot_token'];
         $notificationsTelegram['chat_id'] = $row['chat_id'];
+        $notificationsTelegram['message_template'] = $row['message_template'] ?? '';
         $rowCount++;
     }
 
@@ -220,6 +225,7 @@ $userData['currency_symbol'] = $currencies[$main_currency]['symbol'];
         $notificationsTelegram['enabled'] = 0;
         $notificationsTelegram['bot_token'] = "";
         $notificationsTelegram['chat_id'] = "";
+        $notificationsTelegram['message_template'] = '';
     }
 
 
@@ -393,6 +399,14 @@ $userData['currency_symbol'] = $currencies[$main_currency]['symbol'];
                         }
                         ?>
                     </select>
+                </div>
+                <div class="form-group-inline">
+                    <input type="checkbox" id="repeat_until_paid" name="repeat_until_paid"
+                        <?= $notifications['repeat_until_paid'] ? "checked" : "" ?>>
+                    <label for="repeat_until_paid"><?= translate('repeat_until_paid', $i18n) ?></label>
+                    <i class="fa-solid fa-circle-info" style="margin-left:6px;cursor:help" title="<?= translate('repeat_until_paid_info', $i18n) ?>"></i>
+                </div>
+                <div class="form-group-inline">
                     <input type="submit" class="thin" value="<?= translate('save', $i18n) ?>" id="saveNotifications"
                         onClick="saveNotifications()" />
                 </div>

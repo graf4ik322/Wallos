@@ -476,6 +476,8 @@ $i18n = [
     "google_search_info" => "Adds Google image results (via SerpAPI) as an additional source in the subscription logo search. Create a free SerpAPI account and paste your API key here.",
     "monthly_searches_used" => "Searches used this month",
     "monthly_requests_used" => "API requests used this month",
+    "repeat_until_paid" => "Repeat notifications daily until paid",
+    "repeat_until_paid_info" => "When enabled, notifications will be sent every day starting from the reminder date until you mark the subscription as paid.",
 ];
 
 
