@@ -485,6 +485,7 @@ $i18n = [
     "pay_date_behavior" => "Pay date behavior",
     "shift_from_today" => "Count from actual payment date",
     "shift_from_today_info" => "When marking as paid, the next payment date will be calculated from today instead of from the original scheduled date.",
+    "shift_from_today_short" => "Enabled",
 ];
 
 
