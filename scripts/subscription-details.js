@@ -223,6 +223,8 @@ function renderSubscriptionDetails(subscription) {
   document.querySelector('#subscription-details').classList.add('is-open');
   document.querySelector('#details-backdrop').classList.add('is-open');
   document.body.classList.add('details-open');
+  setupMarkAsPaidButton(subscription.id, subscription);
+
 }
 
 function closeSubscriptionDetails() {
