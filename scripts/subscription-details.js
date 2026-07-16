@@ -250,35 +250,36 @@ function setupMarkAsPaidButton(subscriptionId, subscription) {
     
     payButton.onclick = function() {
       payButton.disabled = true;
-      payButton.textContent = '⏳ ...';
+      payButton.textContent = '...';
       
       fetch('endpoints/subscription/markpaid.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'X-CSRF-Token': window.csrfToken,
+          'X-CSRF-Token': window.csrfToken || '',
         },
         body: JSON.stringify({ id: subscriptionId }),
       })
         .then(function(response) { return response.json(); })
         .then(function(data) {
           if (data.success) {
-            payButton.textContent = '✅ ' + strings.payment_marked;
+            payButton.textContent = strings.payment_marked;
             setTimeout(function() {
               payContainer.style.display = 'none';
               closeSubscriptionDetails();
               location.reload();
             }, 1500);
           } else {
-            payButton.textContent = '❌ ' + (data.message || 'Error');
+            payButton.textContent = (data.message || 'Error');
             payButton.disabled = false;
             setTimeout(function() {
-              payButton.textContent = '✅ ' + strings.mark_as_paid;
+              payButton.textContent = strings.mark_as_paid;
             }, 2000);
           }
         })
-        .catch(function() {
-          payButton.textContent = '❌ Error';
+        .catch(function(err) {
+          console.error('Mark paid error:', err);
+          payButton.textContent = '✕ Error';
           payButton.disabled = false;
         });
     };

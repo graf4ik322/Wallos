@@ -80,9 +80,10 @@ require_once __DIR__ . '/getdbkeys.php';
     <i class="fa-solid fa-note-sticky"></i>
     <span id="details-notes"></span>
   </div>
-  <div class="details-pay-button-container" id="details-pay-button-container" style="display:none;padding:0 24px 24px">
-    <button type="button" class="button" id="details-pay-button" style="width:100%;background-color:var(--success-color,#22c55e);color:#fff;border:none;font-weight:600;border-radius:8px">
-      ✅ <?= translate('mark_as_paid', $i18n) ?>
+  <div class="details-pay-button-container" id="details-pay-button-container" style="display:none;padding:12px 24px 24px">
+    <button type="button" class="button" id="details-pay-button" style="width:100%;background-color:#2b8a3e;color:#fff;border:none;border-radius:12px;padding:14px 0;font-size:16px;font-weight:500;letter-spacing:0.01em;cursor:pointer;transition:background-color 0.2s,transform 0.1s" 
+      onmouseover="this.style.backgroundColor='#237032'" onmouseout="this.style.backgroundColor='#2b8a3e'" onmousedown="this.style.transform='scale(0.97)'" onmouseup="this.style.transform='scale(1)'">
+      <?= translate('mark_as_paid', $i18n) ?>
     </button>
   </div>
 </section>
