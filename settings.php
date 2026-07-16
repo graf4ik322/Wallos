@@ -617,7 +617,7 @@ $userData['currency_symbol'] = $currencies[$main_currency]['symbol'];
                     </div>
                     <div class="form-group-inline">
                         <label class="capitalize"><?= translate('telegram_message_template', $i18n) ?></label>
-                        <i class="fa-solid fa-circle-info" style="margin-left:6px;cursor:help" title="<?= translate('telegram_template_placeholders_info', $i18n) ?>"></i>
+                        <span style="cursor:pointer;margin-left:6px;font-size:18px;" onclick="alert('<?= addslashes(strip_tags(translate('telegram_template_placeholders_info', $i18n))) ?>')"><i class="fa-solid fa-circle-info"></i></span>
                     </div>
                     <div class="form-group-inline">
                         <textarea name="telegrammessagetemplate" id="telegrammessagetemplate" rows="6" style="width:100%;font-family:monospace;font-size:13px"
