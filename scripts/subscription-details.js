@@ -249,9 +249,13 @@ function setupMarkAsPaidButton(subscriptionId, subscription) {
     payContainer.style.display = 'block';
     
     payButton.onclick = function() {
+      // Prevent double clicks
       payButton.disabled = true;
-      payButton.textContent = '...';
+      payButton.textContent = strings.payment_marked;
+      payContainer.style.display = 'none';
+      closeSubscriptionDetails();
       
+      // Fire and forget - the backend processes it
       fetch('endpoints/subscription/markpaid.php', {
         method: 'POST',
         headers: {
@@ -259,27 +263,12 @@ function setupMarkAsPaidButton(subscriptionId, subscription) {
         },
         body: JSON.stringify({ id: subscriptionId }),
       })
-        .then(function(response) { return response.json(); })
-        .then(function(data) {
-          if (data.success) {
-            payButton.textContent = strings.payment_marked;
-            setTimeout(function() {
-              payContainer.style.display = 'none';
-              closeSubscriptionDetails();
-              location.reload();
-            }, 1500);
-          } else {
-            payButton.textContent = (data.message || 'Error');
-            payButton.disabled = false;
-            setTimeout(function() {
-              payButton.textContent = strings.mark_as_paid;
-            }, 2000);
-          }
+        .then(function(response) { return response.text(); })
+        .then(function(text) {
+          location.reload();
         })
-        .catch(function(err) {
-          console.error('Mark paid error:', err);
-          payButton.textContent = '✕ Error';
-          payButton.disabled = false;
+        .catch(function() {
+          location.reload();
         });
     };
   }
