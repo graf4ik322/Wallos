@@ -476,6 +476,8 @@ $i18n = [
     "google_search_info" => "Fügt Google-Bildergebnisse (über SerpAPI) als zusätzliche Quelle in der Logo-Suche hinzu. Erstellen Sie ein kostenloses SerpAPI-Konto und fügen Sie hier Ihren API-Schlüssel ein.",
     "monthly_searches_used" => "Diesen Monat verbrauchte Suchanfragen",
     "monthly_requests_used" => "Diesen Monat verbrauchte API-Anfragen",
+    "mark_as_paid" => "Mark as Paid",
+    "payment_marked" => "Payment recorded!",
 ];
 
 

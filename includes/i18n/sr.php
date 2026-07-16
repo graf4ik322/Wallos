@@ -476,6 +476,8 @@ $i18n = [
     "google_search_info" => "Додаје резултате Google слика (преко SerpAPI) као додатни извор при претрази логотипа. Направите бесплатан SerpAPI налог и налепите овде свој API кључ.",
     "monthly_searches_used" => "Искоришћене претраге овог месеца",
     "monthly_requests_used" => "Искоришћени API захтеви овог месеца",
+    "mark_as_paid" => "Mark as Paid",
+    "payment_marked" => "Payment recorded!",
 ];
 
 

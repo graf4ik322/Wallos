@@ -476,6 +476,8 @@ $i18n = [
     "google_search_info" => "Voegt Google-afbeeldingsresultaten (via SerpAPI) toe als extra bron bij het zoeken naar logo's. Maak een gratis SerpAPI-account en plak hier je API-sleutel.",
     "monthly_searches_used" => "Zoekopdrachten gebruikt deze maand",
     "monthly_requests_used" => "API-verzoeken gebruikt deze maand",
+    "mark_as_paid" => "Mark as Paid",
+    "payment_marked" => "Payment recorded!",
 ];
 
 

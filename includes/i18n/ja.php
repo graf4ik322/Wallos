@@ -477,6 +477,8 @@ $i18n = [
     "google_search_info" => "Google画像検索の結果（SerpAPI経由）をロゴ検索の追加ソースとして加えます。無料のSerpAPIアカウントを作成し、APIキーをここに貼り付けてください。",
     "monthly_searches_used" => "今月の使用済み検索回数",
     "monthly_requests_used" => "今月の使用済みAPIリクエスト数",
+    "mark_as_paid" => "Mark as Paid",
+    "payment_marked" => "Payment recorded!",
 ];
 
 

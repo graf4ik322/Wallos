@@ -480,6 +480,8 @@ $i18n = [
     "repeat_until_paid_info" => "Когда включено, уведомления будут приходить каждый день начиная с даты напоминания, пока вы не отметите подписку как оплаченную.",
     "telegram_message_template" => "Шаблон сообщения",
     "telegram_template_placeholders_info" => "Плейсхолдеры: {name} - название, {price} - цена, {next_payment} - дата, {days_left} - дней до, {url} - сайт, {category} - категория, {notes} - заметки. Поддерживается HTML: <b>жирный</b>",
+    "mark_as_paid" => "Отметить оплаченным",
+    "payment_marked" => "Платёж отмечен!",
 ];
 
 

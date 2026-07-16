@@ -476,6 +476,8 @@ $i18n = [
     "google_search_info" => "Google görsel sonuçlarını (SerpAPI üzerinden) logo aramasına ek kaynak olarak ekler. Ücretsiz bir SerpAPI hesabı oluşturun ve API anahtarınızı buraya yapıştırın.",
     "monthly_searches_used" => "Bu ay kullanılan aramalar",
     "monthly_requests_used" => "Bu ay kullanılan API istekleri",
+    "mark_as_paid" => "Mark as Paid",
+    "payment_marked" => "Payment recorded!",
 ];
 
 

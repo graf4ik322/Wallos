@@ -477,6 +477,8 @@ $i18n = [
     "google_search_info" => "Додає результати пошуку зображень Google (через SerpAPI) як додаткове джерело в пошуку логотипів. Створіть безкоштовний обліковий запис SerpAPI і вставте сюди свій ключ API.",
     "monthly_searches_used" => "Використано пошуків цього місяця",
     "monthly_requests_used" => "Використано API-запитів цього місяця",
+    "mark_as_paid" => "Mark as Paid",
+    "payment_marked" => "Payment recorded!",
 ];
 
 ?>

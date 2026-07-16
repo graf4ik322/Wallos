@@ -80,6 +80,11 @@ require_once __DIR__ . '/getdbkeys.php';
     <i class="fa-solid fa-note-sticky"></i>
     <span id="details-notes"></span>
   </div>
+  <div class="details-pay-button-container" id="details-pay-button-container" style="display:none">
+    <button type="button" class="button success-button" id="details-pay-button" style="width:100%;padding:12px;font-size:16px">
+      ✅ <?= translate('mark_as_paid', $i18n) ?>
+    </button>
+  </div>
 </section>
 
 <?php
@@ -107,6 +112,8 @@ $detailsLookups = [
     'day_before' => translate('day_before', $i18n),
     'days_before' => translate('days_before', $i18n),
     'none' => translate('none', $i18n),
+    'mark_as_paid' => translate('mark_as_paid', $i18n),
+    'payment_marked' => translate('payment_marked', $i18n),
   ],
 ];
 foreach ($categories as $categoryId => $category) {

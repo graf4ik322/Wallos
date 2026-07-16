@@ -480,6 +480,8 @@ $i18n = [
     "repeat_until_paid_info" => "When enabled, notifications will be sent every day starting from the reminder date until you mark the subscription as paid.",
     "telegram_message_template" => "Message template",
     "telegram_template_placeholders_info" => "Placeholders: {name} - name, {price} - price, {next_payment} - date, {days_left} - days until, {url} - website, {category} - category, {notes} - notes. Supports HTML: <b>bold</b>",
+    "mark_as_paid" => "Mark as Paid",
+    "payment_marked" => "Payment recorded!",
 ];
 
 

@@ -475,5 +475,7 @@ $i18n = [
     "google_search_info" => "Tilføjer Google-billedresultater (via SerpAPI) som ekstra kilde i logosøgningen. Opret en gratis SerpAPI-konto, og indsæt din API-nøgle her.",
     "monthly_searches_used" => "Søgninger brugt denne måned",
     "monthly_requests_used" => "API-forespørgsler brugt denne måned",
+    "mark_as_paid" => "Mark as Paid",
+    "payment_marked" => "Payment recorded!",
 ];
 ?>

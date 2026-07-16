@@ -497,6 +497,8 @@ $i18n = [
     "google_search_info" => "将Google图片结果（通过SerpAPI）添加为Logo搜索的额外来源。创建免费的SerpAPI账户并在此粘贴您的API密钥。",
     "monthly_searches_used" => "本月已用搜索次数",
     "monthly_requests_used" => "本月已用API请求数",
+    "mark_as_paid" => "Mark as Paid",
+    "payment_marked" => "Payment recorded!",
 ];
 
 ?>

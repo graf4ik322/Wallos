@@ -474,6 +474,8 @@ $i18n = [
     "google_search_info" => "Menambahkan hasil gambar Google (melalui SerpAPI) sebagai sumber tambahan dalam pencarian logo. Buat akun SerpAPI gratis dan tempel kunci API Anda di sini.",
     "monthly_searches_used" => "Pencarian yang digunakan bulan ini",
     "monthly_requests_used" => "Permintaan API yang digunakan bulan ini",
+    "mark_as_paid" => "Mark as Paid",
+    "payment_marked" => "Payment recorded!",
 ];
 
 ?>

@@ -476,6 +476,8 @@ $i18n = [
     "google_search_info" => "Afegeix resultats d'imatges de Google (via SerpAPI) com a font addicional a la cerca de logotips. Crea un compte gratuït de SerpAPI i enganxa aquí la teva clau API.",
     "monthly_searches_used" => "Cerques utilitzades aquest mes",
     "monthly_requests_used" => "Peticions d'API utilitzades aquest mes",
+    "mark_as_paid" => "Mark as Paid",
+    "payment_marked" => "Payment recorded!",
 ];
 
 

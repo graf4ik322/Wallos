@@ -476,6 +476,8 @@ $i18n = [
     "google_search_info" => "Προσθέτει αποτελέσματα εικόνων Google (μέσω SerpAPI) ως επιπλέον πηγή στην αναζήτηση λογοτύπων. Δημιουργήστε δωρεάν λογαριασμό SerpAPI και επικολλήστε εδώ το κλειδί API σας.",
     "monthly_searches_used" => "Αναζητήσεις που χρησιμοποιήθηκαν αυτόν τον μήνα",
     "monthly_requests_used" => "Αιτήματα API που χρησιμοποιήθηκαν αυτόν τον μήνα",
+    "mark_as_paid" => "Mark as Paid",
+    "payment_marked" => "Payment recorded!",
 ];
 
 

@@ -476,6 +476,8 @@ $i18n = [
     "google_search_info" => "Adaugă rezultatele de imagini Google (prin SerpAPI) ca sursă suplimentară în căutarea de logo-uri. Creați un cont SerpAPI gratuit și lipiți aici cheia API.",
     "monthly_searches_used" => "Căutări utilizate luna aceasta",
     "monthly_requests_used" => "Cereri API utilizate luna aceasta",
+    "mark_as_paid" => "Mark as Paid",
+    "payment_marked" => "Payment recorded!",
 ];
 
 

@@ -476,6 +476,8 @@ $i18n = [
     "google_search_info" => "Přidá výsledky obrázků Google (přes SerpAPI) jako další zdroj při vyhledávání log. Vytvořte si bezplatný účet SerpAPI a vložte sem svůj API klíč.",
     "monthly_searches_used" => "Vyhledávání použitá tento měsíc",
     "monthly_requests_used" => "API požadavky použité tento měsíc",
+    "mark_as_paid" => "Mark as Paid",
+    "payment_marked" => "Payment recorded!",
 ];
 
 
