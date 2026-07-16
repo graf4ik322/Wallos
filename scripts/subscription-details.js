@@ -235,58 +235,48 @@ function closeSubscriptionDetails() {
 }
 
 function setupMarkAsPaidButton(subscriptionId, subscription) {
-  var payContainer = document.getElementById('details-pay-button-container');
-  var payButton = document.getElementById('details-pay-button');
-  
-  if (!payContainer || !payButton) return;
+  var c = document.getElementById('details-pay-button-container');
+  var b = document.getElementById('details-pay-button');
+  if (!c || !b) return;
   
   var today = new Date();
-  var nextPay = new Date(subscription.next_payment + 'T00:00:00');
-  var daysUntil = Math.ceil((nextPay - today) / 86400000);
-  var notifyDays = subscription.notify_days_before >= 0 ? subscription.notify_days_before : 3;
+  var due = new Date(subscription.next_payment + 'T00:00:00');
+  var daysLeft = Math.ceil((due - today) / 86400000);
+  var trigger = subscription.notify_days_before >= 0 ? subscription.notify_days_before : 3;
   
-  if (daysUntil <= notifyDays && !subscription.inactive) {
-    payContainer.style.display = 'block';
+  if (daysLeft <= trigger && !subscription.inactive) {
+    c.style.display = 'block';
     
-    payButton.onclick = function() {
-      // Prevent double clicks
-      payButton.disabled = true;
-      payButton.style.opacity = '0.5';
+    b.onclick = function() {
+      b.disabled = true;
+      b.textContent = '...';
       
-      var lookups = window.subscriptionLookups;
-      var i18n = lookups ? lookups.i18n : {};
-      
-      fetch('endpoints/subscription/markpaid.php', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ id: subscriptionId }),
-      })
-        .then(function(response) { return response.json(); })
-        .then(function(data) {
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', 'endpoints/subscription/markpaid.php', true);
+      xhr.setRequestHeader('Content-Type', 'application/json');
+      xhr.onload = function() {
+        try {
+          var data = JSON.parse(xhr.responseText);
           if (data.success) {
-            payContainer.style.display = 'none';
+            c.style.display = 'none';
             closeSubscriptionDetails();
-            if (typeof showSuccessMessage === 'function') {
-              showSuccessMessage(i18n.payment_marked || 'Paid!');
-            }
-            setTimeout(function() { location.reload(); }, 1200);
+            try { showSuccessMessage(data.message || 'Paid'); } catch(e) {}
+            setTimeout(function() { location.reload(); }, 800);
           } else {
-            payButton.disabled = false;
-            payButton.style.opacity = '1';
-            if (typeof showErrorMessage === 'function') {
-              showErrorMessage(data.message || 'Error');
-            }
+            b.disabled = false;
+            b.textContent = data.message || 'Error';
+            try { showErrorMessage(data.message || 'Error'); } catch(e) {}
           }
-        })
-        .catch(function() {
-          payButton.disabled = false;
-          payButton.style.opacity = '1';
-          if (typeof showErrorMessage === 'function') {
-            showErrorMessage('Connection error');
-          }
-        });
+        } catch(e) {
+          b.disabled = false;
+          b.textContent = 'Error';
+        }
+      };
+      xhr.onerror = function() {
+        b.disabled = false;
+        b.textContent = 'Error';
+      };
+      xhr.send(JSON.stringify({ id: subscriptionId }));
     };
   }
 }
