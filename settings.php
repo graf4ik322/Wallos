@@ -622,7 +622,7 @@ $userData['currency_symbol'] = $currencies[$main_currency]['symbol'];
                     <div class="form-group-inline">
                         <textarea name="telegrammessagetemplate" id="telegrammessagetemplate" rows="6" style="width:100%;font-family:monospace;font-size:13px"
                             placeholder="🚨 {name}&#10;💵 {price}&#10;📅 {next_payment}&#10;🔥 {days_left}"
-                        ><?= htmlspecialchars(\$notificationsTelegram['message_template'] ?? '') ?></textarea>
+                        ><?= htmlspecialchars($notificationsTelegram['message_template'] ?? '') ?></textarea>
                     </div>
                     <div class="buttons">
                         <input type="button" class="secondary-button thin mobile-grow"
