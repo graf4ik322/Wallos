@@ -23,6 +23,13 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
             $subscriptionData['auto_renew'] = $row['auto_renew'];
             $subscriptionData['shift_from_today_on_pay'] = $row['shift_from_today_on_pay'] ?? 0;
             $subscriptionData['start_date'] = $row['start_date'];
+            
+            // Pre-compute whether pay button should show
+            $notifyDays = $row['notify_days_before'] >= 0 ? $row['notify_days_before'] : 5;
+            $nextPay = new DateTime($row['next_payment']);
+            $now = new DateTime();
+            $daysLeft = (int)$now->diff($nextPay)->format('%r%a');
+            $subscriptionData['can_pay'] = ($daysLeft <= $notifyDays && $daysLeft >= 0 && !$row['inactive']);
             $subscriptionData['next_payment'] = $row['next_payment'];
             $subscriptionData['frequency'] = $row['frequency'];
             $subscriptionData['cycle'] = $row['cycle'];
