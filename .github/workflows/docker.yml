@@ -4,8 +4,6 @@ on:
   push:
     branches: [ "main" ]
     tags: [ 'v*' ]
-  pull_request:
-    branches: [ "main" ]
 
 env:
   REGISTRY: ghcr.io
@@ -56,3 +54,17 @@ jobs:
           subject-name: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           subject-digest: ${{ steps.push.outputs.digest }}
           push-to-registry: true
+
+      - name: Send Telegram notification on success
+        if: success()
+        env:
+          MSG: "✅ <b>Сборка Wallos завершена успешно!</b>%0A%0AРепозиторий: ${{ github.repository }}%0AВетка: ${{ github.ref_name }}%0AКоммит: ${{ github.sha[:7] }}%0A%0A🔗 Образ: ghcr.io/${{ github.repository }}:latest%0A%0AОбнови контейнер в Coolify!"
+        run: |
+          curl -s -X POST "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage"             -d "chat_id=${{ secrets.TELEGRAM_CHAT_ID }}"             -d "message_thread_id=1"             -d "text=${MSG}"             -d "parse_mode=HTML"
+
+      - name: Send Telegram notification on failure
+        if: failure()
+        env:
+          MSG: "❌ <b>Сборка Wallos упала!</b>%0A%0AРепозиторий: ${{ github.repository }}%0AВетка: ${{ github.ref_name }}%0AКоммит: ${{ github.sha[:7] }}%0A%0AПроверь логи: https://github.com/${{ github.repository }}/actions"
+        run: |
+          curl -s -X POST "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage"             -d "chat_id=${{ secrets.TELEGRAM_CHAT_ID }}"             -d "message_thread_id=1"             -d "text=${MSG}"             -d "parse_mode=HTML"
