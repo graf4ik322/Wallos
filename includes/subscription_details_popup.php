@@ -81,8 +81,8 @@ require_once __DIR__ . '/getdbkeys.php';
     <span id="details-notes"></span>
   </div>
   <div class="details-pay-button-container" id="details-pay-button-container" style="display:none;padding:12px 24px 24px">
-    <button type="button" class="button" id="details-pay-button" style="width:100%;background-color:#2b8a3e;color:#fff;border:none;border-radius:25px;padding:16px 0;font-size:16px;font-weight:500;letter-spacing:0.015em;cursor:pointer;transition:background-color 0.2s ease,transform 0.12s ease,box-shadow 0.2s ease;box-shadow:0 1px 3px rgba(0,0,0,0.15)" 
-      onmouseover="this.style.backgroundColor='#237032';this.style.boxShadow='0 2px 8px rgba(0,0,0,0.2)'" onmouseout="this.style.backgroundColor='#2b8a3e';this.style.boxShadow='0 1px 3px rgba(0,0,0,0.15)'" onmousedown="this.style.transform='scale(0.97)'" onmouseup="this.style.transform='scale(1)'">
+    <button type="button" class="button" id="details-pay-button" style="width:100%;background-color:#28a745;color:#fff;border:none;border-radius:25px;padding:16px 0;font-size:16px;font-weight:500;letter-spacing:0.015em;cursor:pointer;transition:background-color 0.2s ease,transform 0.12s ease,box-shadow 0.2s ease;box-shadow:0 1px 3px rgba(0,0,0,0.15)" 
+      onmouseover="this.style.backgroundColor='#1e7e34';this.style.boxShadow='0 2px 8px rgba(0,0,0,0.2)'" onmouseout="this.style.backgroundColor='#28a745';this.style.boxShadow='0 1px 3px rgba(0,0,0,0.15)'" onmousedown="this.style.transform='scale(0.97)'" onmouseup="this.style.transform='scale(1)'">
       <?= translate('mark_as_paid', $i18n) ?>
     </button>
   </div>
