@@ -272,11 +272,10 @@ function renewSubscription(event, id) {
   event.stopPropagation();
   event.preventDefault();
 
-  fetch("endpoints/subscription/renew.php", {
+  fetch("endpoints/subscription/markpaid.php", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "X-CSRF-Token": window.csrfToken,
     },
     body: JSON.stringify({ id: id }),
   })
