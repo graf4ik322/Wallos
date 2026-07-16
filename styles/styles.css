@@ -2145,6 +2145,11 @@ button.dark-theme-button i {
   position: fixed;
   bottom: 25px;
   right: 30px;
+}
+
+.toast#errorToast {
+  bottom: 95px;
+}
   border-radius: 12px;
   border: 1px solid var(--box-border-color);
   background-color: var(--box-background-color);
