@@ -252,7 +252,8 @@ function setupMarkAsPaidButton(subscriptionId, subscription) {
     
     b.onclick = function() {
       b.disabled = true;
-      b.style.opacity = '0.5';
+      var textSpan = document.getElementById('pay-button-text');
+      textSpan.innerHTML = '<span class="btn-spinner"></span>' + (window.subscriptionLookups||{}).i18n.mark_as_paid || 'Pay';
       
       var xhr = new XMLHttpRequest();
       xhr.open('POST', 'endpoints/subscription/markpaid.php', true);
@@ -262,28 +263,25 @@ function setupMarkAsPaidButton(subscriptionId, subscription) {
         try {
           var data = JSON.parse(xhr.responseText);
           if (data.success && data.next_payment !== oldNextPay) {
-            // Paid successfully
             c.style.display = 'none';
             closeSubscriptionDetails();
             try { showSuccessMessage((window.subscriptionLookups||{}).i18n.payment_marked || 'Paid!'); } catch(e) {}
             setTimeout(function() { location.reload(); }, 1000);
           } else {
-            // Error from server
             b.disabled = false;
-            b.style.opacity = '1';
+            textSpan.textContent = (window.subscriptionLookups||{}).i18n.mark_as_paid || 'Pay';
             try { showErrorMessage(data.message || 'Error'); } catch(e) {}
           }
         } catch(e) {
-          // Invalid response - retry
           b.disabled = false;
-          b.style.opacity = '1';
+          textSpan.textContent = (window.subscriptionLookups||{}).i18n.mark_as_paid || 'Pay';
           try { showErrorMessage('Connection error'); } catch(e) {}
         }
       };
       
       xhr.onerror = function() {
         b.disabled = false;
-        b.style.opacity = '1';
+        textSpan.textContent = (window.subscriptionLookups||{}).i18n.mark_as_paid || 'Pay';
         try { showErrorMessage('Network error'); } catch(e) {}
       };
       
