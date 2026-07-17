@@ -67,7 +67,7 @@ $stmt->bindValue(':id', $subscriptionId, SQLITE3_INTEGER);
 $stmt->bindValue(':userId', $userId, SQLITE3_INTEGER);
 
 if ($stmt->execute()) {
-    echo json_encode(["success" => true, "id" => $subscriptionId, "next_payment" => $newDate]);
+    echo json_encode(["success" => true, "id" => $subscriptionId, "next_payment" => $newDate, "message" => "Payment recorded!"]);
 } else {
     echo json_encode(["success" => false, "message" => "Update failed"]);
 }
