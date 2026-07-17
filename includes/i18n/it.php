@@ -501,6 +501,13 @@ $i18n = [
     "mark_as_paid" => "Mark as Paid",
     "payment_marked" => "Payment recorded!",
     "shift_from_today_short" => "Enabled",
+    "repeat_until_paid" => "Repeat notifications daily until paid",
+    "repeat_until_paid_info" => "When enabled, notifications repeat daily until subscription is marked as paid",
+    "telegram_message_template" => "Message template",
+    "telegram_template_placeholders_info" => "Placeholders: {name}, {price}, {next_payment}, {days_left}, {url}, {category}, {notes}. Supports HTML: <b>bold</b>",
+    "shift_from_today" => "Count from actual payment date",
+    "shift_from_today_info" => "When enabled, the next payment date shifts from when you click pay, not from the scheduled date",
+    "pay_date_behavior" => "Payment date behavior",
 ];
 
 ?>
