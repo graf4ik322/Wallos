@@ -77,6 +77,7 @@ while ($userToNotify = $usersToNotify->fetchArray(SQLITE3_ASSOC)) {
 
     if ($row = $result->fetchArray(SQLITE3_ASSOC)) {
         $days = $row['days'];
+        $repeatUntilPaid = (bool)$row['repeat_until_paid'];
     }
 
     // Check if email notifications are enabled and get the settings
