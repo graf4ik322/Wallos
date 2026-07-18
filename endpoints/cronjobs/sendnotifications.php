@@ -529,12 +529,12 @@ while ($userToNotify = $usersToNotify->fetchArray(SQLITE3_ASSOC)) {
                     if (!empty($telegramTemplate)) {
                         $message = '';
                         foreach ($perUser as $subscription) {
-                            $dayText = getDaysText($subscription['days']);
+                            $dayLeftText = getDaysText($subscription['days_left']);
                             $subMessage = $telegramTemplate;
                             $subMessage = str_replace('{name}', htmlspecialchars($subscription['name'], ENT_QUOTES, 'UTF-8'), $subMessage);
                             $subMessage = str_replace('{price}', htmlspecialchars($subscription['formatted_price'], ENT_QUOTES, 'UTF-8'), $subMessage);
                             $subMessage = str_replace('{next_payment}', htmlspecialchars($subscription['next_payment'], ENT_QUOTES, 'UTF-8'), $subMessage);
-                            $subMessage = str_replace('{days_left}', htmlspecialchars($dayText, ENT_QUOTES, 'UTF-8'), $subMessage);
+                            $subMessage = str_replace('{days_left}', htmlspecialchars($dayLeftText, ENT_QUOTES, 'UTF-8'), $subMessage);
                             $subMessage = str_replace('{url}', htmlspecialchars($subscription['url'] ?? '', ENT_QUOTES, 'UTF-8'), $subMessage);
                             $subMessage = str_replace('{category}', htmlspecialchars($subscription['category_name'] ?? '', ENT_QUOTES, 'UTF-8'), $subMessage);
                             $subMessage = str_replace('{notes}', htmlspecialchars($subscription['notes'] ?? '', ENT_QUOTES, 'UTF-8'), $subMessage);
@@ -726,12 +726,12 @@ while ($userToNotify = $usersToNotify->fetchArray(SQLITE3_ASSOC)) {
                     if (!empty($telegramTemplate)) {
                         $message = '';
                         foreach ($perUser as $subscription) {
-                            $dayText = getDaysText($subscription['days']);
+                            $dayLeftText = getDaysText($subscription['days_left']);
                             $subMessage = $telegramTemplate;
                             $subMessage = str_replace('{name}', htmlspecialchars($subscription['name'], ENT_QUOTES, 'UTF-8'), $subMessage);
                             $subMessage = str_replace('{price}', htmlspecialchars($subscription['formatted_price'], ENT_QUOTES, 'UTF-8'), $subMessage);
                             $subMessage = str_replace('{next_payment}', htmlspecialchars($subscription['next_payment'], ENT_QUOTES, 'UTF-8'), $subMessage);
-                            $subMessage = str_replace('{days_left}', htmlspecialchars($dayText, ENT_QUOTES, 'UTF-8'), $subMessage);
+                            $subMessage = str_replace('{days_left}', htmlspecialchars($dayLeftText, ENT_QUOTES, 'UTF-8'), $subMessage);
                             $subMessage = str_replace('{url}', htmlspecialchars($subscription['url'] ?? '', ENT_QUOTES, 'UTF-8'), $subMessage);
                             $subMessage = str_replace('{category}', htmlspecialchars($subscription['category_name'] ?? '', ENT_QUOTES, 'UTF-8'), $subMessage);
                             $subMessage = str_replace('{notes}', htmlspecialchars($subscription['notes'] ?? '', ENT_QUOTES, 'UTF-8'), $subMessage);
@@ -915,12 +915,12 @@ while ($userToNotify = $usersToNotify->fetchArray(SQLITE3_ASSOC)) {
                     if (!empty($telegramTemplate)) {
                         $message = '';
                         foreach ($perUser as $subscription) {
-                            $dayText = getDaysText($subscription['days']);
+                            $dayLeftText = getDaysText($subscription['days_left']);
                             $subMessage = $telegramTemplate;
                             $subMessage = str_replace('{name}', htmlspecialchars($subscription['name'], ENT_QUOTES, 'UTF-8'), $subMessage);
                             $subMessage = str_replace('{price}', htmlspecialchars($subscription['formatted_price'], ENT_QUOTES, 'UTF-8'), $subMessage);
                             $subMessage = str_replace('{next_payment}', htmlspecialchars($subscription['next_payment'], ENT_QUOTES, 'UTF-8'), $subMessage);
-                            $subMessage = str_replace('{days_left}', htmlspecialchars($dayText, ENT_QUOTES, 'UTF-8'), $subMessage);
+                            $subMessage = str_replace('{days_left}', htmlspecialchars($dayLeftText, ENT_QUOTES, 'UTF-8'), $subMessage);
                             $subMessage = str_replace('{url}', htmlspecialchars($subscription['url'] ?? '', ENT_QUOTES, 'UTF-8'), $subMessage);
                             $subMessage = str_replace('{category}', htmlspecialchars($subscription['category_name'] ?? '', ENT_QUOTES, 'UTF-8'), $subMessage);
                             $subMessage = str_replace('{notes}', htmlspecialchars($subscription['notes'] ?? '', ENT_QUOTES, 'UTF-8'), $subMessage);
