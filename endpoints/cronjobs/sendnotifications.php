@@ -291,7 +291,9 @@ while ($userToNotify = $usersToNotify->fetchArray(SQLITE3_ASSOC)) {
                 $notify[$rowSubscription['payer_user_id']][$i]['category'] = $categories[$rowSubscription['category_id']]['name'];
                 $notify[$rowSubscription['payer_user_id']][$i]['payer'] = $household[$rowSubscription['payer_user_id']]['name'];
                 $notify[$rowSubscription['payer_user_id']][$i]['date'] = $rowSubscription['next_payment'];
+                $notify[$rowSubscription['payer_user_id']][$i]['next_payment'] = $rowSubscription['next_payment'];
                 $notify[$rowSubscription['payer_user_id']][$i]['days'] = $daysToCompare;
+                $notify[$rowSubscription['payer_user_id']][$i]['days_left'] = $difference;
                 $notify[$rowSubscription['payer_user_id']][$i]['url'] = $rowSubscription['url'];
                 $notify[$rowSubscription['payer_user_id']][$i]['notes'] = $rowSubscription['notes'];
                 $i++;
@@ -318,7 +320,7 @@ while ($userToNotify = $usersToNotify->fetchArray(SQLITE3_ASSOC)) {
                         $message = "The following subscriptions are up for renewal:\n";
 
                         foreach ($perUser as $subscription) {
-                            $dayText = getDaysText($subscription['days']);
+                            $dayText = getDaysText($subscription['days_left']);
                             $message .= $subscription['name'] . " for " . $subscription['formatted_price'] . " (" . $dayText . ")\n";
                         }
 
@@ -404,7 +406,7 @@ while ($userToNotify = $usersToNotify->fetchArray(SQLITE3_ASSOC)) {
                         }
 
                         foreach ($perUser as $subscription) {
-                            $dayText = getDaysText($subscription['days']);
+                            $dayText = getDaysText($subscription['days_left']);
                             $message .= $subscription['name'] . " for " . $subscription['formatted_price'] . " (" . $dayText . ")\n";
                         }
 
@@ -464,7 +466,7 @@ while ($userToNotify = $usersToNotify->fetchArray(SQLITE3_ASSOC)) {
                         }
 
                         foreach ($perUser as $subscription) {
-                            $dayText = getDaysText($subscription['days']);
+                            $dayText = getDaysText($subscription['days_left']);
                             $message .= $subscription['name'] . " for " . $subscription['formatted_price'] . " (" . $dayText . ")\n";
                         }
 
@@ -543,7 +545,7 @@ while ($userToNotify = $usersToNotify->fetchArray(SQLITE3_ASSOC)) {
                     } else {
                         $message = "" . $user['name'] . ", the following subscriptions are up for renewal:\n";
                         foreach ($perUser as $subscription) {
-                            $dayText = getDaysText($subscription['days']);
+                            $dayText = getDaysText($subscription['days_left']);
                             $message .= $subscription['name'] . " for " . $subscription['formatted_price'] . " (" . $dayText . ")\n";
                         }
                     }
@@ -600,7 +602,7 @@ while ($userToNotify = $usersToNotify->fetchArray(SQLITE3_ASSOC)) {
                     }
 
                     foreach ($perUser as $subscription) {
-                        $dayText = getDaysText($subscription['days']);
+                        $dayText = getDaysText($subscription['days_left']);
                         $messageContent .= $subscription['name'] . " for " . $subscription['formatted_price'] . " (" . $dayText . ")\n";
                     }
 
@@ -666,7 +668,7 @@ while ($userToNotify = $usersToNotify->fetchArray(SQLITE3_ASSOC)) {
                         }
 
                         foreach ($perUser as $subscription) {
-                            $dayText = getDaysText($subscription['days']);
+                            $dayText = getDaysText($subscription['days_left']);
                             $messageContent .= $subscription['name'] . " for " . $subscription['formatted_price'] . " (" . $dayText . ")\n";
                         }
 
@@ -740,7 +742,7 @@ while ($userToNotify = $usersToNotify->fetchArray(SQLITE3_ASSOC)) {
                     } else {
                         $message = "" . $user['name'] . ", the following subscriptions are up for renewal:\n";
                         foreach ($perUser as $subscription) {
-                            $dayText = getDaysText($subscription['days']);
+                            $dayText = getDaysText($subscription['days_left']);
                             $message .= $subscription['name'] . " for " . $subscription['formatted_price'] . " (" . $dayText . ")\n";
                         }
                     }
@@ -787,7 +789,7 @@ while ($userToNotify = $usersToNotify->fetchArray(SQLITE3_ASSOC)) {
                         }
 
                         foreach ($perUser as $subscription) {
-                            $dayText = getDaysText($subscription['days']);
+                            $dayText = getDaysText($subscription['days_left']);
                             $message .= $subscription['name'] . " for " . $subscription['formatted_price'] . " (" . $dayText . ")\n";
                         }
 
@@ -929,7 +931,7 @@ while ($userToNotify = $usersToNotify->fetchArray(SQLITE3_ASSOC)) {
                     } else {
                         $message = "" . $user['name'] . ", the following subscriptions are up for renewal:\n";
                         foreach ($perUser as $subscription) {
-                            $dayText = getDaysText($subscription['days']);
+                            $dayText = getDaysText($subscription['days_left']);
                             $message .= $subscription['name'] . " for " . $subscription['formatted_price'] . " (" . $dayText . ")\n";
                         }
                     }
